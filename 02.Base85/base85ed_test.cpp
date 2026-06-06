@@ -95,7 +95,7 @@ TEST(Base85Encode, OutputLength)
         std::vector<uint8_t> input(n, 0x42);
         size_t got = base85::encode(input).size();
         size_t expected = (n / 4) * 5 + (n % 4 ? n % 4 + 1 : 0);
-        EXPECT_EQ(got, expected) << "неверная длина для n=" << n;
+        EXPECT_EQ(got, expected) << "wrong length for n=" << n;
     }
 }
 
@@ -106,7 +106,7 @@ TEST(Base85RoundTrip, VariousLengths)
         std::vector<uint8_t> input(n);
         for (size_t i = 0; i < n; ++i) input[i] = static_cast<uint8_t>(i);
         EXPECT_EQ(base85::decode(base85::encode(input)), input)
-            << "round-trip failed for length " << n;
+                << "round-trip failed for length " << n;
     }
 }
 
@@ -116,7 +116,7 @@ TEST(Base85RoundTrip, SingleByteAllValues)
     {
         std::vector<uint8_t> input = { static_cast<uint8_t>(v) };
         EXPECT_EQ(base85::decode(base85::encode(input)), input)
-            << "round-trip failed for byte value " << v;
+                << "round-trip failed for byte value " << v;
     }
 }
 
