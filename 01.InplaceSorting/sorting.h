@@ -3,7 +3,6 @@
 
 // Header-only
 
-// Для swap
 #include "collvalue.h"
 #include <iterator>
 #include <algorithm>
@@ -23,7 +22,7 @@ void bubble_sort(Iterator begin, Iterator end)
             auto right = std::next(left);
             if (*right < *left)
             {
-                swap(*left, *right);
+                std::iter_swap(left, right);
                 swapped = true;
             }
             std::advance(left, 1);
@@ -44,11 +43,11 @@ void quick_sort(Iterator begin, Iterator end)
     {
         if (*j < *pivot)
         {
-            swap(*i, *j);
+            std::iter_swap(i, j);
             ++i;
         }
     }
-    swap(*i, *pivot);
+    std::iter_swap(i, pivot);
     quick_sort(begin, i);
     quick_sort(std::next(i), end);
 }
