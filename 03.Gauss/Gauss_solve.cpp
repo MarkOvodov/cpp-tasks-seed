@@ -7,6 +7,11 @@ GaussVector Gauss_solve(GaussMatrix &ab)
 {
     int n = ab.rows();
 
+    if (n == 0)
+        throw std::invalid_argument("Matrix is empty");
+    if (ab.cols() != n + 1)
+        throw std::invalid_argument("Expected augmented matrix of shape n x (n+1)");
+
     for (int col = 0; col < n; ++col)
     {
         int pivot = col;
